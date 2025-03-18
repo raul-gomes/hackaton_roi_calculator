@@ -1,20 +1,20 @@
-[project]
+[tool.poetry]
 name = "hackaton-roi"
 version = "0.1.0"
-description = ""
+description = "Empowering businesses with AI-driven ROI predictions and strategic insights."
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    "Raul Gomes <rsgomes86@gmail.com>",
+    "Leonardo Andrade <leonardoandrade.eng@gmail.com>",
+    "Igor <igorchieppe@hotmail.com>"
 ]
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "streamlit (>=1.43.2,<2.0.0)",
-    "pandas (>=2.2.3,<3.0.0)"
-]
-
-[tool.poetry]
 packages = [{include = "hackaton_roi", from = "src"}]
+license = "MIT"  # Adicione uma licença apropriada, se aplicável.
 
+[tool.poetry.dependencies]
+python = ">=3.12"
+streamlit = ">=1.43.2,<2.0.0"
+pandas = ">=2.2.3,<3.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
