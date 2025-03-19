@@ -15,6 +15,9 @@ license = "MIT"  # Adicione uma licença apropriada, se aplicável.
 python = ">=3.12"
 streamlit = ">=1.43.2,<2.0.0"
 pandas = ">=2.2.3,<3.0.0"
+plotly-express = "^0.4.1"
+matplotlib = "^3.10.1"
+fpdf = "^1.7.2"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
