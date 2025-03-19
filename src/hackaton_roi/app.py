@@ -1,8 +1,13 @@
+from hackaton_roi.utils.analytics import create_dashboard
+from hackaton_roi.utils.file_handler import process_uploaded_file
+from hackaton_roi.utils.manual_input import collect_manual_input
+from hackaton_roi.utils.openai_utils import generate_text
 import streamlit as st
+import pandas as pd
+
+from string import Template
+
 from utils.logger import log_action
-from utils.file_handler import process_uploaded_file
-from utils.manual_input import collect_manual_input
-from utils.analytics import calculate_expense_percentage, create_chart
 
 def main():
     """
@@ -15,33 +20,33 @@ def main():
     input_choice = st.radio("Choose an input method:", ["Upload Document", "Manual Entry"])
     
     df = None
-
+    log_action("Input method selected", f"Method: {input_choice}")
     if input_choice == "Upload Document":
         uploaded_file = st.file_uploader("Upload your file (CSV, XLSX, XLS)")
+        log_action("File uploaded", f"Filename: {uploaded_file}")
         if uploaded_file:
             df = process_uploaded_file(uploaded_file)
+            log_action("File processed", f"Rows: {df.shape[0]}, Columns: {df.shape[1]}")
 
     elif input_choice == "Manual Entry":
         df = collect_manual_input()
+        log_action("Manual input collected", f"Data: {df}")
 
-    if df is not None and not df.empty:
-        st.success("Data successfully processed!")
 
-        # Step 2: Expense analysis
-        expense_data = {
-            "Rent": 1200, "Condominium": 400, "Property Tax": 100,
-            "Electricity Bill": 150, "Water Bill": 50, "Internet": 100, "Supermarket": 500
-        }
-        df_expenses = calculate_expense_percentage(expense_data)
-
-        col1, col2 = st.columns([1, 1.5])
-
-        with col1:
-            st.dataframe(df_expenses.style.set_properties(**{'font-size': '16pt'}))
-
-        with col2:
-            fig = create_chart(df_expenses)
-            st.plotly_chart(fig, use_container_width=True)
+    if st.button("Generate Analysis"):
+        
+        file_path = "src/hackaton_roi/prompts/main_prompt.md"
+        with open(file_path, "r", encoding='utf-8') as file:
+            prompt = file.read()
+            prompt = Template(prompt).safe_substitute(df)
+        
+        log_action("Prompt generated", f"Prompt: {prompt}")
+        monthly_costs = generate_text(prompt)
+        net_profit = generate_text(prompt)
+        investment = generate_text(prompt)
+        
+        log_action("Analysis generated", f"Monthly Costs: {monthly_costs}, Net Profit: {net_profit}, Investment: {investment}")
+        create_dashboard(monthly_costs, net_profit, investment)
 
 if __name__ == "__main__":
     log_action("Application started")

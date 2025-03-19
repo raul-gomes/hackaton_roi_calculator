@@ -1,6 +1,7 @@
 import pandas as pd
+from hackaton_roi.utils.logger import log_action
 import streamlit as st
-from utils.logger import log_action
+
 
 def process_uploaded_file(uploaded_file) -> pd.DataFrame:
     """
@@ -12,7 +13,7 @@ def process_uploaded_file(uploaded_file) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Processed DataFrame.
     """
-    action_id = log_action("File upload started", f"Filename: {uploaded_file.name}")
+    log_action("File upload started", f"Filename: {uploaded_file.name}")
     
     try:
         if uploaded_file.name.endswith(".csv"):
