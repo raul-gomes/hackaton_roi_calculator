@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{report_metadata.generated_language}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ capa.titulo }}</title>
+    <title>{{executive_summary.overview}}</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -33,22 +33,19 @@
             border-bottom: 1px solid #ddd;
         }
         ul {
-            margin-top: 5px;
             padding-left: 20px;
         }
-        .tabela-custos, .tabela-precos, .tabela-projecoes {
+        table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        .tabela-custos th, .tabela-custos td,
-        .tabela-precos th, .tabela-precos td,
-        .tabela-projecoes th, .tabela-projecoes td {
+        th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
-        .tabela-custos th, .tabela-precos th, .tabela-projecoes th {
+        th {
             background-color: #283e56;
             color: #fff;
         }
@@ -61,99 +58,118 @@
 <body>
 
 <header>
-    <h1>{{ capa.titulo }}</h1>
-    <h3>{{ capa.subtitulo }}</h3>
-    <p>{{ capa.data }} | Gerado por {{ capa.autor }}</p>
+    <h1>{{executive_summary.overview}}</h1>
+    <p>{{report_metadata.generated_date}}</p>
 </header>
 
 <main>
 
 <section>
-    <h2>📌 Sumário Executivo</h2>
-    <p><strong>Visão Geral:</strong> {{ sumario_executivo.visao_geral }}</p>
-    <p><strong>Objetivos do Negócio:</strong> {{ sumario_executivo.objetivos_negocio }}</p>
-    <p><strong>Público-Alvo:</strong> {{ sumario_executivo.publico_alvo }}</p>
-    <p><strong>Diferenciais Competitivos:</strong></p>
+    <h2>{{section_titles.executive_summary}}</h2>
+    <p>{{executive_summary.overview}}</p>
+</section>
+
+<section>
+    <h2>{{section_titles.market_and_competitive_analysis}}</h2>
+    <p>{{market_and_competitive_analysis.industry_overview}}</p>
     <ul>
-        {% for dif in sumario_executivo.diferenciais_competitivos %}
-            <li>{{ dif }}</li>
+        {% for trend in market_and_competitive_analysis.key_market_trends %}
+            <li>{{trend}}</li>
         {% endfor %}
     </ul>
-    <p><strong>Resumo Financeiro:</strong> {{ sumario_executivo.resumo_financeiro }}</p>
 </section>
 
 <section>
-    <h2>📌 Introdução</h2>
-    <p>{{ introducao.contexto_mercado }}</p>
-    <p>{{ introducao.justificativa_negocio }}</p>
-</section>
-
-<section>
-    <h2>📌 Análise de Mercado e Concorrência</h2>
-    <p><strong>Setor:</strong> {{ analise_mercado_concorrencia.visao_geral_setor }}</p>
-    <p><strong>Potencial do Mercado:</strong> {{ analise_mercado_concorrencia.tamanho_potencial_mercado }}</p>
-    <h3>Análise SWOT</h3>
-    <ul>
-        <li><strong>Forças:</strong> {{ analise_mercado_concorrencia.analise_swot.forcas }}</li>
-        <li><strong>Fraquezas:</strong> {{ analise_mercado_concorrencia.analise_swot.fraquezas }}</li>
-        <li><strong>Oportunidades:</strong> {{ analise_mercado_concorrencia.analise_swot.oportunidades }}</li>
-        <li><strong>Ameaças:</strong> {{ analise_mercado_concorrencia.analise_swot.ameacas }}</li>
-    </ul>
-</section>
-
-<section>
-    <h2>📌 Investimentos e Custos</h2>
-    <h3>Custos Iniciais</h3>
-    <table class="tabela-custos">
+    <h2>{{section_titles.investment_structure_and_operational_costs}}</h2>
+    <h3>{{section_titles.initial_investment}}</h3>
+    <table>
         <tr>
-            {% for item, valor in estrutura_investimento_custos.detalhamento_custo_inicial.itens.items() %}
-            <th>{{ item }}</th>
+            {% for item in investment_structure_and_operational_costs.initial_investment.breakdown_by_items %}
+                <th>{{item}}</th>
             {% endfor %}
-            <th>Total</th>
+            <th>{{section_titles.total}}</th>
         </tr>
         <tr>
-            {% for valor in estrutura_investimento_custos.detalhamento_custo_inicial.itens.values() %}
-            <td>R$ {{ valor }}</td>
+            {% for value in investment_structure_and_operational_costs.initial_investment.breakdown_by_items.values() %}
+                <td>{{value}}</td>
             {% endfor %}
-            <td>R$ {{ estrutura_investimento_custos.detalhamento_custo_inicial.total_estimado }}</td>
+            <td>{{investment_structure_and_operational_costs.initial_investment.total_estimated}}</td>
         </tr>
     </table>
 </section>
 
 <section>
-    <h2>📌 Monetização e Precificação</h2>
-    <p>{{ modelo_monetizacao_precificacao.estrategia_recomendada }}</p>
-    <table class="tabela-precos">
+    <h2>{{section_titles.monetization_model_and_pricing}}</h2>
+    <ul>
+        {% for suggestion in monetization_model_and_pricing.monetization_model_recommendations.consultant_suggestions %}
+            <li>{{suggestion}}</li>
+        {% endfor %}
+    </ul>
+    <table>
         <tr>
-            <th>Produto/Serviço</th>
-            <th>Descrição</th>
-            <th>Preço Sugerido (R$)</th>
+            <th>{{section_titles.product_service}}</th>
+            <th>{{section_titles.recommended_price}}</th>
+            <th>{{section_titles.notes}}</th>
         </tr>
-        {% for prod in modelo_monetizacao_precificacao.tabela_precos_sugeridos.produtos_servicos %}
+        {% for price in monetization_model_and_pricing.pricing_strategy.consultant_suggested_prices %}
         <tr>
-            <td>{{ prod.nome }}</td>
-            <td>{{ prod.descricao }}</td>
-            <td>{{ prod.preco_sugerido }}</td>
+            <td>{{price.product_or_service}}</td>
+            <td>{{price.recommended_price}}</td>
+            <td>{{price.pricing_notes}}</td>
         </tr>
         {% endfor %}
     </table>
 </section>
 
 <section>
-    <h2>📌 Projeções Financeiras e ROI</h2>
-    <p><strong>Break-even:</strong> {{ projecao_financeira_roi.analise_break_even.prazo_estimado }}</p>
-    <p><strong>Payback:</strong> {{ projecao_financeira_roi.analise_payback.prazo_estimado }}</p>
-    <div class="grafico">
-        <img src="data:image/png;base64,{{ projecao_financeira_roi.grafico_projecao_financeira }}" alt="Projeção Financeira">
-    </div>
+    <h2>{{section_titles.financial_projections_break_even_and_ROI}}</h2>
+    <p><strong>{{section_titles.break_even}}:</strong> {{financial_projections_break_even_and_ROI.break_even_analysis.estimated_break_even_time}}</p>
+    <p><strong>{{section_titles.payback_period}}:</strong> {{financial_projections_break_even_and_ROI.ROI_and_payback_analysis.estimated_payback_period}}</p>
+
+    <table>
+        <tr>
+            <th>{{section_titles.year}}</th>
+            <th>{{section_titles.revenue}}</th>
+            <th>{{section_titles.expenses}}</th>
+            <th>{{section_titles.profit}}</th>
+            <th>{{section_titles.notes}}</th>
+        </tr>
+        {% for proj in financial_projections_break_even_and_ROI['3_year_financial_projection'].yearly_projections %}
+        <tr>
+            <td>{{proj.year}}</td>
+            <td>{{proj.revenue}}</td>
+            <td>{{proj.expenses}}</td>
+            <td>{{proj.profit}}</td>
+            <td>{{proj.notes}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </section>
 
 <section>
-    <h2>📌 Conclusão e Plano de Ação</h2>
-    <p>{{ conclusao_plano_acao.conclusao_geral }}</p>
+    <h2>{{section_titles.compliance_regulation_and_expansion}}</h2>
     <ul>
-        {% for insight in conclusao_plano_acao.principais_insights %}
-            <li>{{ insight }}</li>
+        {% for lic in compliance_regulation_and_expansion.required_licenses_and_regulations %}
+            <li>{{lic.license_or_regulation}}: {{lic.description}} ({{lic.how_to_obtain_or_comply}})</li>
+        {% endfor %}
+    </ul>
+    <p>{{compliance_regulation_and_expansion.international_expansion_opportunities.feasibility}}</p>
+</section>
+
+<section>
+    <h2>{{section_titles.references_and_sources_cited}}</h2>
+    <ul>
+        {% for ref in references_and_sources_cited %}
+            <li>{{ref.source_name}}: {{ref.description}} - <a href="{{ref.link_or_reference}}">{{ref.link_or_reference}}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <h2>{{section_titles.conclusion_and_next_steps}}</h2>
+    <ul>
+        {% for action in conclusion_and_next_steps.recommended_actions %}
+            <li>{{action.step}}. {{action.action_description}} ({{action.priority_level}}, {{action.recommended_timeframe}})</li>
         {% endfor %}
     </ul>
 </section>
@@ -161,7 +177,7 @@
 </main>
 
 <footer>
-    <p>© {{ capa.autor }} - Todos os direitos reservados.</p>
+    <p>© OpenBizROI AI – All rights reserved.</p>
 </footer>
 
 </body>

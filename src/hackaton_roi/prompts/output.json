@@ -1,141 +1,175 @@
 {
-    "capa": {
-      "titulo": "",
-      "subtitulo": "",
-      "data": "",
-      "autor": "OpenBizROI AI"
+    "report_metadata": {
+        "generated_language": "",
+        "generated_date": ""
     },
-    "sumario_executivo": {
-      "visao_geral": "",
-      "objetivos_negocio": "",
-      "publico_alvo": "",
-      "diferenciais_competitivos": [],
-      "resumo_financeiro": ""
+    "section_titles": {
+        "executive_summary": "",
+        "market_and_competitive_analysis": "",
+        "investment_structure_and_operational_costs": "",
+        "initial_investment": "",
+        "monetization_model_and_pricing": "",
+        "financial_projections_break_even_and_ROI": "",
+        "compliance_regulation_and_expansion": "",
+        "references_and_sources_cited": "",
+        "conclusion_and_next_steps": "",
+        "total": "",
+        "product_service": "",
+        "recommended_price": "",
+        "notes": "",
+        "break_even": "",
+        "payback_period": "",
+        "year": "",
+        "revenue": "",
+        "expenses": "",
+        "profit": ""
     },
-    "introducao": {
-      "contexto_mercado": "",
-      "justificativa_negocio": ""
-    },
-    "analise_mercado_concorrencia": {
-      "visao_geral_setor": "",
-      "tamanho_potencial_mercado": "",
-      "tendencias_relevantes": [],
-      "concorrentes_diretos": [
-        {
-          "nome": "",
-          "descricao": "",
-          "diferenciais_negocio_usuario": ""
-        }
-      ],
-      "concorrentes_indiretos": [
-        {
-          "nome": "",
-          "descricao": "",
-          "diferenciais_negocio_usuario": ""
-        }
-      ],
-      "analise_swot": {
-        "forcas": [],
-        "fraquezas": [],
-        "oportunidades": [],
-        "ameacas": []
-      }
-    },
-    "estrutura_investimento_custos": {
-      "detalhamento_custo_inicial": {
-        "descricao": "",
-        "itens": {
-          "infraestrutura": 0,
-          "desenvolvimento": 0,
-          "marketing": 0,
-          "equipamentos": 0,
-          "outros": 0
+    "executive_summary": {
+        "overview": "",
+        "explanation_of_key_terms": {
+            "ROI": "",
+            "investment": "",
+            "profit_margin": ""
         },
-        "total_estimado": 0
-      },
-      "detalhamento_custos_mensais": {
-        "descricao": "",
-        "itens": {
-          "infraestrutura": 0,
-          "marketing": 0,
-          "pessoal": 0,
-          "operacional": 0,
-          "outros": 0
+        "initial_conditions_summary": {
+            "business_type": "",
+            "location": "",
+            "target_audience_estimate": ""
+        }
+    },
+    "market_and_competitive_analysis": {
+        "industry_overview": "",
+        "key_market_trends": [],
+        "competitors_analysis": {
+            "direct_competitors": [
+                {
+                    "name": "",
+                    "description": "",
+                    "strengths": "",
+                    "weaknesses": "",
+                    "user_business_differentiation": ""
+                }
+            ],
+            "indirect_competitors": [
+                {
+                    "name": "",
+                    "description": "",
+                    "user_business_differentiation": ""
+                }
+            ]
         },
-        "total_estimado": 0
-      },
-      "observacoes_custos": ""
-    },
-    "modelo_monetizacao_precificacao": {
-      "estrategias_monetizacao": [
-        {
-          "nome": "",
-          "descricao": "",
-          "vantagens": "",
-          "desvantagens": ""
+        "competitive_differentiators": {
+            "provided_by_user": [],
+            "suggested_by_consultant": []
         }
-      ],
-      "estrategia_recomendada": "",
-      "tabela_precos_sugeridos": {
-        "produtos_servicos": [
-          {
-            "nome": "",
-            "descricao": "",
-            "preco_sugerido": 0
-          }
-        ]
-      }
     },
-    "projecao_financeira_roi": {
-      "descricao_cenarios": "",
-      "analise_break_even": {
-        "descricao": "",
-        "prazo_estimado": ""
-      },
-      "analise_payback": {
-        "descricao": "",
-        "prazo_estimado": ""
-      },
-      "projecoes": [
-        {
-          "cenario": "",
-          "descricao": "",
-          "projecao_usuarios": 0,
-          "projecao_receita_mensal": 0,
-          "projecao_receita_anual": 0,
-          "observacoes": ""
+    "investment_structure_and_operational_costs": {
+        "initial_investment": {
+            "total_estimated": 0,
+            "breakdown_by_items": {
+                "infrastructure": 0,
+                "equipment": 0,
+                "inventory": 0,
+                "marketing": 0,
+                "legal": 0,
+                "others": 0
+            },
+            "consultant_notes": ""
+        },
+        "monthly_operational_costs": {
+            "total_estimated": 0,
+            "breakdown_by_items": {
+                "rent_and_utilities": 0,
+                "marketing": 0,
+                "salaries": 0,
+                "technology_and_subscriptions": 0,
+                "miscellaneous": 0
+            },
+            "consultant_notes": ""
         }
-      ],
-      "grafico_projecao_financeira": "base64_encoded_image_placeholder"
     },
-    "compliance_regulacao_expansao": {
-      "descricao_regulacoes": "",
-      "lista_regulacoes": [
-        {
-          "nome": "",
-          "descricao": "",
-          "impacto_negocio": ""
+    "monetization_model_and_pricing": {
+        "monetization_model_recommendations": {
+            "user_provided": "",
+            "consultant_suggestions": []
+        },
+        "pricing_strategy": {
+            "user_provided_prices": [],
+            "consultant_suggested_prices": [
+                {
+                    "product_or_service": "",
+                    "recommended_price": 0,
+                    "pricing_notes": ""
+                }
+            ]
         }
-      ],
-      "estrategias_expansao_sugeridas": ""
     },
-    "referencias_fontes": [
-      {
-        "fonte": "",
-        "descricao": "",
-        "link": ""
-      }
+    "financial_projections_break_even_and_ROI": {
+        "3_year_financial_projection": {
+            "description": "",
+            "yearly_projections": [
+                {
+                    "year": 1,
+                    "revenue": 0,
+                    "expenses": 0,
+                    "profit": 0,
+                    "notes": ""
+                },
+                {
+                    "year": 2,
+                    "revenue": 0,
+                    "expenses": 0,
+                    "profit": 0,
+                    "notes": ""
+                },
+                {
+                    "year": 3,
+                    "revenue": 0,
+                    "expenses": 0,
+                    "profit": 0,
+                    "notes": ""
+                }
+            ]
+        },
+        "break_even_analysis": {
+            "break_even_point_description": "",
+            "estimated_break_even_time": ""
+        },
+        "ROI_and_payback_analysis": {
+            "roi_description": "",
+            "estimated_payback_period": ""
+        }
+    },
+    "compliance_regulation_and_expansion": {
+        "required_licenses_and_regulations": [
+            {
+                "license_or_regulation": "",
+                "description": "",
+                "how_to_obtain_or_comply": ""
+            }
+        ],
+        "international_expansion_opportunities": {
+            "feasibility": "",
+            "recommended_strategies": ""
+        }
+    },
+    "references_and_sources_cited": [
+        {
+            "source_name": "",
+            "description": "",
+            "link_or_reference": "",
+            "methodology_if_estimate": ""
+        }
     ],
-    "conclusao_plano_acao": {
-      "conclusao_geral": "",
-      "principais_insights": [],
-      "plano_acao_sugerido": [
-        {
-          "etapa": "",
-          "descricao": "",
-          "prazo_estimado": ""
-        }
-      ]
+    "conclusion_and_next_steps": {
+        "key_insights": [],
+        "recommended_actions": [
+            {
+                "step": 1,
+                "action_description": "",
+                "priority_level": "",
+                "recommended_timeframe": ""
+            }
+        ]
     }
-  }
-  
+}
