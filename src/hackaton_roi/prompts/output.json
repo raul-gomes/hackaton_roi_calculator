@@ -1,0 +1,101 @@
+{
+    "sumario_executivo": {
+      "visao_geral": "Seu projeto é uma plataforma SaaS acessível para qualquer nível de empreendedor...",
+      "publico_alvo": "Empreendedores iniciantes, pequenos empresários e gestores experientes...",
+      "diferenciais": [
+        "Plataforma adaptável ao nível de conhecimento do usuário",
+        "Análises automatizadas para estruturar um plano de negócios eficiente"
+      ]
+    },
+    "analise_mercado": {
+      "concorrencia": [
+        {
+          "nome": "LivePlan",
+          "diferenca": "Exige conhecimento prévio e não é intuitivo para iniciantes"
+        },
+        {
+          "nome": "Bizplan",
+          "diferenca": "Criação de planos interativos, mas sem acessibilidade"
+        }
+      ],
+      "oportunidades": [
+        "Mercado de SaaS está crescendo 20% ao ano",
+        "Alta demanda por ferramentas de planejamento de negócios acessíveis"
+      ]
+    },
+    "investimento_custos": {
+      "custo_inicial": {
+        "infraestrutura": 5000,
+        "desenvolvimento": 3000,
+        "marketing": 5000,
+        "suporte": 2000
+      },
+      "custo_mensal": {
+        "infraestrutura": 1000,
+        "marketing": 3000,
+        "suporte": 1500
+      }
+    },
+    "modelo_monetizacao": {
+      "freemium": {
+        "descricao": "Plano gratuito com recursos limitados e upsell para versão paga"
+      },
+      "assinatura": {
+        "descricao": "Planos pagos mensais com diferentes níveis de acesso",
+        "valores": {
+          "basico": 19,
+          "avancado": 49,
+          "corporativo": 299
+        }
+      }
+    },
+    "projecao_financeira": {
+      "break_even": "12 meses",
+      "payback": "18 meses",
+      "receita_estimada": {
+        "cenarios": [
+          {
+            "cenario": "pessimista",
+            "usuarios": 500,
+            "receita_mensal": 9500
+          },
+          {
+            "cenario": "neutro",
+            "usuarios": 1000,
+            "receita_mensal": 19000
+          },
+          {
+            "cenario": "otimista",
+            "usuarios": 5000,
+            "receita_mensal": 95000
+          }
+        ]
+      }
+    },
+    "compliance_regulacao": {
+      "regulacoes": [
+        "GDPR (Europa) - Proteção de dados",
+        "LGPD (Brasil) - Regras para tratamento de dados pessoais",
+        "Registro de marca e contratos - Necessário para evitar problemas jurídicos"
+      ]
+    },
+    "referencias": [
+      {
+        "fonte": "Gartner (2024)",
+        "descricao": "Projeção de crescimento do mercado SaaS",
+        "link": "https://www.gartner.com"
+      },
+      {
+        "fonte": "Deloitte (2023)",
+        "descricao": "Relatório sobre tendências de monetização",
+        "link": "https://www2.deloitte.com"
+      }
+    ],
+    "proximos_passos": [
+      "Desenvolver MVP com assistente interativo e relatórios automáticos",
+      "Lançar site básico e iniciar divulgação inicial",
+      "Atrair 50 usuários no primeiro mês para validar a proposta",
+      "Ajustar preços conforme resposta do mercado"
+    ]
+  }
+  
