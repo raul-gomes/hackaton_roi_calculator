@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from hackaton_roi.utils.logger import log_action
 
+
 class EnvConfig:
     """
     Class to load and store environment variables.
@@ -17,9 +18,8 @@ class EnvConfig:
         log_action("Environment configuration started")
         load_dotenv(dotenv_path=dotenv_path)
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
-        
-        log_action("Environment configuration completed")
 
+        log_action("Environment configuration completed")
 
     def validate(self) -> None:
         """

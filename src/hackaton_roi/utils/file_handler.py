@@ -1,6 +1,6 @@
 import pandas as pd
-from hackaton_roi.utils.logger import log_action
 import streamlit as st
+from utils.logger import log_action
 
 
 def process_uploaded_file(uploaded_file) -> pd.DataFrame:
@@ -14,7 +14,6 @@ def process_uploaded_file(uploaded_file) -> pd.DataFrame:
         pd.DataFrame: Processed DataFrame.
     """
     log_action("File upload started", f"Filename: {uploaded_file.name}")
-    
     try:
         if uploaded_file.name.endswith(".csv"):
             df = pd.read_csv(uploaded_file)
@@ -22,10 +21,14 @@ def process_uploaded_file(uploaded_file) -> pd.DataFrame:
             df = pd.read_excel(uploaded_file)
         else:
             raise ValueError("Unsupported file format")
-        
-        log_action("File processed successfully", f"Rows: {df.shape[0]}, Columns: {df.shape[1]}")
-        return df
+
+        log_action("File processed successfully", f"Filename: {df}")
+
+        return df.to_dict(orient="records")
+
     except Exception as e:
         log_action("File processing failed", str(e))
-        st.error("Error processing the file. Please check the format and try again.")
-        return pd.DataFrame()
+        st.error(
+            f"Error processing the file. Please check the format and try again. ({e})"
+        )
+        return dict({})

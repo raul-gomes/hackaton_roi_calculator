@@ -28,7 +28,7 @@ Caso o usuário **não tenha o valor total do investimento**, sugira **alternati
 ✅ **Planos de contingência** → Estratégias para lidar com crises e quedas de faturamento.  
 
 📌 **Dados fornecidos pelo usuário:**  
-{DADOS_DO_USUÁRIO}
+{DADOS_DO_USUARIO}
 
 📌 **Sua resposta deve conter:**  
 ✅ **1️⃣ Análise realista do negócio** → Setor, concorrência, público-alvo e riscos.  

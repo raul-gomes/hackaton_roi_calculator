@@ -232,8 +232,9 @@ def create_dashboard(monthly_costs, net_profit, investment) -> None:
 
     st.write(
         """
-    This business plan was developed to... [Add information about the business plan""")
-    
+    This business plan was developed to... [Add information about the business plan"""
+    )
+
     investment: Dict[str, List[Dict[str, float]]] = {
         "title": "Investment Distribution",
         "data": [
@@ -320,7 +321,7 @@ def create_dashboard(monthly_costs, net_profit, investment) -> None:
             x=df_investment["Value"],
             y=df_investment["Category"],
             orientation="h",
-            text=[f'{p:.1f}%' for p in df_investment["Percentage"]],
+            text=[f"{p:.1f}%" for p in df_investment["Percentage"]],
             textposition="inside",
             marker_color=primary_color,
         )
