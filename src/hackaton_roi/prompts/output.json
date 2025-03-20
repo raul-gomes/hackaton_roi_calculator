@@ -1,101 +1,141 @@
 {
-    "sumario_executivo": {
-      "visao_geral": "Seu projeto é uma plataforma SaaS acessível para qualquer nível de empreendedor...",
-      "publico_alvo": "Empreendedores iniciantes, pequenos empresários e gestores experientes...",
-      "diferenciais": [
-        "Plataforma adaptável ao nível de conhecimento do usuário",
-        "Análises automatizadas para estruturar um plano de negócios eficiente"
-      ]
+    "capa": {
+      "titulo": "",
+      "subtitulo": "",
+      "data": "",
+      "autor": "OpenBizROI AI"
     },
-    "analise_mercado": {
-      "concorrencia": [
+    "sumario_executivo": {
+      "visao_geral": "",
+      "objetivos_negocio": "",
+      "publico_alvo": "",
+      "diferenciais_competitivos": [],
+      "resumo_financeiro": ""
+    },
+    "introducao": {
+      "contexto_mercado": "",
+      "justificativa_negocio": ""
+    },
+    "analise_mercado_concorrencia": {
+      "visao_geral_setor": "",
+      "tamanho_potencial_mercado": "",
+      "tendencias_relevantes": [],
+      "concorrentes_diretos": [
         {
-          "nome": "LivePlan",
-          "diferenca": "Exige conhecimento prévio e não é intuitivo para iniciantes"
-        },
-        {
-          "nome": "Bizplan",
-          "diferenca": "Criação de planos interativos, mas sem acessibilidade"
+          "nome": "",
+          "descricao": "",
+          "diferenciais_negocio_usuario": ""
         }
       ],
-      "oportunidades": [
-        "Mercado de SaaS está crescendo 20% ao ano",
-        "Alta demanda por ferramentas de planejamento de negócios acessíveis"
-      ]
-    },
-    "investimento_custos": {
-      "custo_inicial": {
-        "infraestrutura": 5000,
-        "desenvolvimento": 3000,
-        "marketing": 5000,
-        "suporte": 2000
-      },
-      "custo_mensal": {
-        "infraestrutura": 1000,
-        "marketing": 3000,
-        "suporte": 1500
-      }
-    },
-    "modelo_monetizacao": {
-      "freemium": {
-        "descricao": "Plano gratuito com recursos limitados e upsell para versão paga"
-      },
-      "assinatura": {
-        "descricao": "Planos pagos mensais com diferentes níveis de acesso",
-        "valores": {
-          "basico": 19,
-          "avancado": 49,
-          "corporativo": 299
+      "concorrentes_indiretos": [
+        {
+          "nome": "",
+          "descricao": "",
+          "diferenciais_negocio_usuario": ""
         }
+      ],
+      "analise_swot": {
+        "forcas": [],
+        "fraquezas": [],
+        "oportunidades": [],
+        "ameacas": []
       }
     },
-    "projecao_financeira": {
-      "break_even": "12 meses",
-      "payback": "18 meses",
-      "receita_estimada": {
-        "cenarios": [
+    "estrutura_investimento_custos": {
+      "detalhamento_custo_inicial": {
+        "descricao": "",
+        "itens": {
+          "infraestrutura": 0,
+          "desenvolvimento": 0,
+          "marketing": 0,
+          "equipamentos": 0,
+          "outros": 0
+        },
+        "total_estimado": 0
+      },
+      "detalhamento_custos_mensais": {
+        "descricao": "",
+        "itens": {
+          "infraestrutura": 0,
+          "marketing": 0,
+          "pessoal": 0,
+          "operacional": 0,
+          "outros": 0
+        },
+        "total_estimado": 0
+      },
+      "observacoes_custos": ""
+    },
+    "modelo_monetizacao_precificacao": {
+      "estrategias_monetizacao": [
+        {
+          "nome": "",
+          "descricao": "",
+          "vantagens": "",
+          "desvantagens": ""
+        }
+      ],
+      "estrategia_recomendada": "",
+      "tabela_precos_sugeridos": {
+        "produtos_servicos": [
           {
-            "cenario": "pessimista",
-            "usuarios": 500,
-            "receita_mensal": 9500
-          },
-          {
-            "cenario": "neutro",
-            "usuarios": 1000,
-            "receita_mensal": 19000
-          },
-          {
-            "cenario": "otimista",
-            "usuarios": 5000,
-            "receita_mensal": 95000
+            "nome": "",
+            "descricao": "",
+            "preco_sugerido": 0
           }
         ]
       }
     },
-    "compliance_regulacao": {
-      "regulacoes": [
-        "GDPR (Europa) - Proteção de dados",
-        "LGPD (Brasil) - Regras para tratamento de dados pessoais",
-        "Registro de marca e contratos - Necessário para evitar problemas jurídicos"
-      ]
-    },
-    "referencias": [
-      {
-        "fonte": "Gartner (2024)",
-        "descricao": "Projeção de crescimento do mercado SaaS",
-        "link": "https://www.gartner.com"
+    "projecao_financeira_roi": {
+      "descricao_cenarios": "",
+      "analise_break_even": {
+        "descricao": "",
+        "prazo_estimado": ""
       },
+      "analise_payback": {
+        "descricao": "",
+        "prazo_estimado": ""
+      },
+      "projecoes": [
+        {
+          "cenario": "",
+          "descricao": "",
+          "projecao_usuarios": 0,
+          "projecao_receita_mensal": 0,
+          "projecao_receita_anual": 0,
+          "observacoes": ""
+        }
+      ],
+      "grafico_projecao_financeira": "base64_encoded_image_placeholder"
+    },
+    "compliance_regulacao_expansao": {
+      "descricao_regulacoes": "",
+      "lista_regulacoes": [
+        {
+          "nome": "",
+          "descricao": "",
+          "impacto_negocio": ""
+        }
+      ],
+      "estrategias_expansao_sugeridas": ""
+    },
+    "referencias_fontes": [
       {
-        "fonte": "Deloitte (2023)",
-        "descricao": "Relatório sobre tendências de monetização",
-        "link": "https://www2.deloitte.com"
+        "fonte": "",
+        "descricao": "",
+        "link": ""
       }
     ],
-    "proximos_passos": [
-      "Desenvolver MVP com assistente interativo e relatórios automáticos",
-      "Lançar site básico e iniciar divulgação inicial",
-      "Atrair 50 usuários no primeiro mês para validar a proposta",
-      "Ajustar preços conforme resposta do mercado"
-    ]
+    "conclusao_plano_acao": {
+      "conclusao_geral": "",
+      "principais_insights": [],
+      "plano_acao_sugerido": [
+        {
+          "etapa": "",
+          "descricao": "",
+          "prazo_estimado": ""
+        }
+      ]
+    }
   }
   
