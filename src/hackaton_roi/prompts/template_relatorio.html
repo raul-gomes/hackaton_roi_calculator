@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{executive_summary.overview}}</title>
+    <title>ROI Report - {{executive_summary.initial_conditions_summary.business_type}}</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -66,17 +66,40 @@
 
 <section>
     <h2>{{section_titles.executive_summary}}</h2>
-    <p>{{executive_summary.overview}}</p>
+    <p><strong>{{executive_summary.explanation_of_key_terms.ROI}}</strong>: {{executive_summary.explanation_of_key_terms.investment}}</p>
+    <p><strong>{{section_titles.target_audience_estimate}}:</strong> {{executive_summary.initial_conditions_summary.target_audience_estimate}}</p>
 </section>
 
 <section>
     <h2>{{section_titles.market_and_competitive_analysis}}</h2>
     <p>{{market_and_competitive_analysis.industry_overview}}</p>
+    
+    <h3>Market Trends</h3>
     <ul>
         {% for trend in market_and_competitive_analysis.key_market_trends %}
             <li>{{trend}}</li>
         {% endfor %}
     </ul>
+
+    <h3>Direct Competitors</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Strengths</th>
+            <th>Weaknesses</th>
+            <th>Business Differentiation</th>
+        </tr>
+        {% for competitor in market_and_competitive_analysis.competitors_analysis.direct_competitors %}
+        <tr>
+            <td>{{competitor.name}}</td>
+            <td>{{competitor.description}}</td>
+            <td>{{competitor.strengths}}</td>
+            <td>{{competitor.weaknesses}}</td>
+            <td>{{competitor.user_business_differentiation}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </section>
 
 <section>
@@ -100,11 +123,6 @@
 
 <section>
     <h2>{{section_titles.monetization_model_and_pricing}}</h2>
-    <ul>
-        {% for suggestion in monetization_model_and_pricing.monetization_model_recommendations.consultant_suggestions %}
-            <li>{{suggestion}}</li>
-        {% endfor %}
-    </ul>
     <table>
         <tr>
             <th>{{section_titles.product_service}}</th>
@@ -147,29 +165,11 @@
 </section>
 
 <section>
-    <h2>{{section_titles.compliance_regulation_and_expansion}}</h2>
-    <ul>
-        {% for lic in compliance_regulation_and_expansion.required_licenses_and_regulations %}
-            <li>{{lic.license_or_regulation}}: {{lic.description}} ({{lic.how_to_obtain_or_comply}})</li>
-        {% endfor %}
-    </ul>
-    <p>{{compliance_regulation_and_expansion.international_expansion_opportunities.feasibility}}</p>
-</section>
-
-<section>
-    <h2>{{section_titles.references_and_sources_cited}}</h2>
-    <ul>
-        {% for ref in references_and_sources_cited %}
-            <li>{{ref.source_name}}: {{ref.description}} - <a href="{{ref.link_or_reference}}">{{ref.link_or_reference}}</a></li>
-        {% endfor %}
-    </ul>
-</section>
-
-<section>
     <h2>{{section_titles.conclusion_and_next_steps}}</h2>
+    <h3>Key Insights</h3>
     <ul>
-        {% for action in conclusion_and_next_steps.recommended_actions %}
-            <li>{{action.step}}. {{action.action_description}} ({{action.priority_level}}, {{action.recommended_timeframe}})</li>
+        {% for insight in conclusion_and_next_steps.key_insights %}
+            <li>{{insight}}</li>
         {% endfor %}
     </ul>
 </section>
