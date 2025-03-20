@@ -81,8 +81,8 @@ def main():
     elif input_choice == "Manual Entry":
         df = collect_manual_input()
         if not df:  # Check if manual input returned None
-            st.error("Please fill in all required fields.")
-            log_action("Manual input failed", "Incomplete form submission")
+            st.error("Please fill at leat one fields.")
+            log_action("Manual input failed", "Empty form")
             return
 
     # Step 2: Generate Analysis (Single Button for Both Input Methods)

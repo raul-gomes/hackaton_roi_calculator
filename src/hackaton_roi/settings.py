@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from hackaton_roi.utils.logger import log_action
+import streamlit as st
 
 
 class EnvConfig:
@@ -8,7 +9,7 @@ class EnvConfig:
     Class to load and store environment variables.
     """
 
-    def __init__(self, dotenv_path: str = ".env"):
+    def __init__(self):
         """
         Initializes the EnvConfig class and loads environment variables.
 
@@ -16,9 +17,9 @@ class EnvConfig:
             dotenv_path (str): Path to the .env file.
         """
         log_action("Environment configuration started")
-        load_dotenv(dotenv_path=dotenv_path)
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
 
+        load_dotenv()
+        self.openai_api_key = st.secrets["OPENAI_API_KEY"]
         log_action("Environment configuration completed")
 
     def validate(self) -> None:

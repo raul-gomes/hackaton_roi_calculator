@@ -1,5 +1,6 @@
 import time
-from hackaton_roi.utils.settings import EnvConfig
+
+from hackaton_roi.settings import EnvConfig
 from openai import OpenAI
 from utils.logger import log_action
 
@@ -19,12 +20,12 @@ def generate_text(prompt: str) -> str:
     client = OpenAI(
         api_key=EnvConfig().openai_api_key
     )  # Replace with your API key logic
-
+    
     retries = 3
     for attempt in range(retries):
         try:
             response = client.responses.create(
-                model="gpt-4",
+                model="gpt-4o-mini",
                 instructions="Você é um consultor de negócios especializado em análise de ROI.",
                 input=prompt,
             )
