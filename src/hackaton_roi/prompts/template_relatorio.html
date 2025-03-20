@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ capa.titulo }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 900px;
+        }
+        header, footer {
+            background-color: #283e56;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+        h1, h2, h3 {
+            color: #283e56;
+        }
+        h1 {
+            border-bottom: 3px solid #283e56;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        section {
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        .tabela-custos, .tabela-precos, .tabela-projecoes {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .tabela-custos th, .tabela-custos td,
+        .tabela-precos th, .tabela-precos td,
+        .tabela-projecoes th, .tabela-projecoes td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabela-custos th, .tabela-precos th, .tabela-projecoes th {
+            background-color: #283e56;
+            color: #fff;
+        }
+        .grafico {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{ capa.titulo }}</h1>
+    <h3>{{ capa.subtitulo }}</h3>
+    <p>{{ capa.data }} | Gerado por {{ capa.autor }}</p>
+</header>
+
+<main>
+
+<section>
+    <h2>📌 Sumário Executivo</h2>
+    <p><strong>Visão Geral:</strong> {{ sumario_executivo.visao_geral }}</p>
+    <p><strong>Objetivos do Negócio:</strong> {{ sumario_executivo.objetivos_negocio }}</p>
+    <p><strong>Público-Alvo:</strong> {{ sumario_executivo.publico_alvo }}</p>
+    <p><strong>Diferenciais Competitivos:</strong></p>
+    <ul>
+        {% for dif in sumario_executivo.diferenciais_competitivos %}
+            <li>{{ dif }}</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Resumo Financeiro:</strong> {{ sumario_executivo.resumo_financeiro }}</p>
+</section>
+
+<section>
+    <h2>📌 Introdução</h2>
+    <p>{{ introducao.contexto_mercado }}</p>
+    <p>{{ introducao.justificativa_negocio }}</p>
+</section>
+
+<section>
+    <h2>📌 Análise de Mercado e Concorrência</h2>
+    <p><strong>Setor:</strong> {{ analise_mercado_concorrencia.visao_geral_setor }}</p>
+    <p><strong>Potencial do Mercado:</strong> {{ analise_mercado_concorrencia.tamanho_potencial_mercado }}</p>
+    <h3>Análise SWOT</h3>
+    <ul>
+        <li><strong>Forças:</strong> {{ analise_mercado_concorrencia.analise_swot.forcas }}</li>
+        <li><strong>Fraquezas:</strong> {{ analise_mercado_concorrencia.analise_swot.fraquezas }}</li>
+        <li><strong>Oportunidades:</strong> {{ analise_mercado_concorrencia.analise_swot.oportunidades }}</li>
+        <li><strong>Ameaças:</strong> {{ analise_mercado_concorrencia.analise_swot.ameacas }}</li>
+    </ul>
+</section>
+
+<section>
+    <h2>📌 Investimentos e Custos</h2>
+    <h3>Custos Iniciais</h3>
+    <table class="tabela-custos">
+        <tr>
+            {% for item, valor in estrutura_investimento_custos.detalhamento_custo_inicial.itens.items() %}
+            <th>{{ item }}</th>
+            {% endfor %}
+            <th>Total</th>
+        </tr>
+        <tr>
+            {% for valor in estrutura_investimento_custos.detalhamento_custo_inicial.itens.values() %}
+            <td>R$ {{ valor }}</td>
+            {% endfor %}
+            <td>R$ {{ estrutura_investimento_custos.detalhamento_custo_inicial.total_estimado }}</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <h2>📌 Monetização e Precificação</h2>
+    <p>{{ modelo_monetizacao_precificacao.estrategia_recomendada }}</p>
+    <table class="tabela-precos">
+        <tr>
+            <th>Produto/Serviço</th>
+            <th>Descrição</th>
+            <th>Preço Sugerido (R$)</th>
+        </tr>
+        {% for prod in modelo_monetizacao_precificacao.tabela_precos_sugeridos.produtos_servicos %}
+        <tr>
+            <td>{{ prod.nome }}</td>
+            <td>{{ prod.descricao }}</td>
+            <td>{{ prod.preco_sugerido }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>📌 Projeções Financeiras e ROI</h2>
+    <p><strong>Break-even:</strong> {{ projecao_financeira_roi.analise_break_even.prazo_estimado }}</p>
+    <p><strong>Payback:</strong> {{ projecao_financeira_roi.analise_payback.prazo_estimado }}</p>
+    <div class="grafico">
+        <img src="data:image/png;base64,{{ projecao_financeira_roi.grafico_projecao_financeira }}" alt="Projeção Financeira">
+    </div>
+</section>
+
+<section>
+    <h2>📌 Conclusão e Plano de Ação</h2>
+    <p>{{ conclusao_plano_acao.conclusao_geral }}</p>
+    <ul>
+        {% for insight in conclusao_plano_acao.principais_insights %}
+            <li>{{ insight }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+</main>
+
+<footer>
+    <p>© {{ capa.autor }} - Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
