@@ -1,3 +1,7 @@
+import json
+import time  # Para evitar throttling da API
+
+# Lista de seções do relatório
 sections = [
     "executive_summary",
     "market_and_competitive_analysis",
@@ -9,34 +13,29 @@ sections = [
     "conclusion_and_next_steps"
 ]
 
+# Dicionário para armazenar os resultados
 generated_report = {}
 
+# Simulação de uma chamada para a API OpenAI
+def call_openai_api(prompt):
+    """Simulação de resposta da OpenAI API"""
+    time.sleep(1)  # Simula tempo de resposta da API
+    return {"text": f"Generated content for: {prompt[:50]}..."}  # Retorno fictício
+
+# Geração do relatório, seção por seção
 for section in sections:
     prompt = f"""
-    Generate the section {section} for the business report. 
-    Ensure a detailed response with 300-500 words. 
-    Use structured insights, financial analysis, and competitive research. 
-    The business is {tipo_negocio}, located in {localizacao}. 
-    Consider an investment of {investimento_inicial} and a target audience of {publico_alvo}. 
+    Generate a detailed {section} for the business report.
+    Ensure a minimum of 300-500 words with structured insights and analysis.
+    The business is focused on {tipo_negocio}, located in {localizacao}.
+    Consider an investment of {investimento_inicial} and a target audience of {publico_alvo}.
     """
     
-    response = call_openai_api(prompt)  # Chamada para o GPT-4o-mini
-    generated_report[section] = response["text"]
+    response = call_openai_api(prompt)  # Simulação da chamada da API
+    generated_report[section] = response["text"]  # Armazena o conteúdo da seção
 
-# Junta as seções no JSON final
+# Gera o JSON final
 final_report_json = json.dumps(generated_report, indent=4)
 
-for section in sections:
-    previous_sections = "\n".join(
-        [f"{key}: {generated_report[key]}" for key in generated_report.keys()]
-    )
-
-    prompt = f"""
-    Continue generating the business report.  
-    Here is what has been generated so far:\n{previous_sections}  
-    Now, generate the next section: {section}.  
-    Ensure consistency with previous sections, and provide at least 300-500 words.  
-    """
-
-    response = call_openai_api(prompt)
-    generated_report[section] = response["text"]
+# Exibe o resultado (substituir por envio para frontend no Streamlit)
+print(final_report_json)
