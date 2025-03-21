@@ -4,6 +4,10 @@ from hackaton_roi.settings import EnvConfig
 from openai import OpenAI
 from utils.logger import log_action
 
+import re
+
+import json
+
 
 def generate_text(prompt: str) -> str:
     """
@@ -20,17 +24,31 @@ def generate_text(prompt: str) -> str:
     client = OpenAI(
         api_key=EnvConfig().openai_api_key
     )  # Replace with your API key logic
-    
+
     retries = 3
     for attempt in range(retries):
         try:
             response = client.responses.create(
                 model="gpt-4o-mini",
-                instructions="Você é um consultor de negócios especializado em análise de ROI.",
+                instructions="You are an elite business consultant with expertise in feasibility analysis, ROI calculation, financial strategy, and business growth. Your task is to generate a comprehensive business report in JSON format based on the user input provided.",
                 input=prompt,
             )
-            log_action("Text generation completed", f"Response: {response.output}")
-            return response.output
+            log_action(
+                "Text generation completed",
+                f"Response: {response.output[0].content[0].text}",
+            )
+            json_pattern = r"```json\n(.*?)\n```"
+            json_match = re.search(
+                json_pattern, str(response.output[0].content[0].text), re.DOTALL
+            )
+            json_string = json_match.group(1)
+            print(json_string)
+            data_dict = json.loads(json_string)
+
+            log_action("JSON data extracted", f"Data: {data_dict}")
+            # Converter a string JSON para um dicionário Python
+
+            return data_dict
 
         except Exception as e:
             log_action(f"Attempt {attempt + 1} failed", str(e))

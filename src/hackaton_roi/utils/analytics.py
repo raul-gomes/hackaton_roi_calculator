@@ -1,349 +1,371 @@
 import streamlit as st
+import json
 import pandas as pd
+import plotly.express as px
 import plotly.graph_objects as go
-from typing import Dict, List, Tuple
 
 
-# New color palette
-primary_color: str = "#007bff"  # Vibrant blue for main elements
-secondary_color: str = "#ffc107"  # Yellow for highlight
-success_color: str = "#28a745"  # Green for success (profit)
-danger_color: str = "#dc3545"  # Red for losses (costs)
-background_color: str = "#f8f9fa"  # Light background
-text_color: str = "#343a40"  # Dark text
-
-
-def create_dashboard(monthly_costs, net_profit, investment) -> None:
+def create_dashboard(data):
     """
-    Creates a business plan dashboard with financial data visualizations.
+    Create a dynamic dashboard based on the provided JSON data.
 
     Args:
-        df (pd.DataFrame): The main DataFrame (not used in this example).
+        data (dict): JSON data containing business analysis information
     """
+    # Display report metadata
+    st.title("Business Analysis Dashboard")
 
-    monthly_costs: Dict[str, Dict[str, int]] = {
-        "title": "Adjusted Monthly Costs",
-        "data": {
-            "rent": 1200,
-            "condominium": 400,
-            "property tax": 100,
-            "electricity bill": 150,
-            "water bill": 50,
-            "internet": 100,
-            "supermarket": 500,
-        },
-    }
+    # Executive Summary Section
+    st.header("Executive Summary")
+    if data["executive_summary"]["overview"]:
+        st.write(data["executive_summary"]["overview"])
 
-    net_profit: Dict[str, List[Dict[str, int]]] = {
-        "title": "Estimated Net Profit",
-        "data": [
-            {
-                "period": "Month 1",
-                "Gross Revenue": 50000,
-                "Fixed Costs": 25000,
-                "Net Profit": 25000,
-            },
-            {
-                "period": "Month 2",
-                "Gross Revenue": 55000,
-                "Fixed Costs": 25000,
-                "Net Profit": 30000,
-            },
-            {
-                "period": "Month 3",
-                "Gross Revenue": 60000,
-                "Fixed Costs": 25000,
-                "Net Profit": 35000,
-            },
-            {
-                "period": "Month 4",
-                "Gross Revenue": 65000,
-                "Fixed Costs": 25000,
-                "Net Profit": 40000,
-            },
-            {
-                "period": "Month 5",
-                "Gross Revenue": 70000,
-                "Fixed Costs": 25000,
-                "Net Profit": 45000,
-            },
-        ],
-    }
+    # Display initial conditions in metrics
+    if any(data["executive_summary"]["initial_conditions_summary"].values()):
+        col1, col2, col3 = st.columns(3)
 
-    investment: Dict[str, List[Dict[str, float]]] = {
-        "title": "Investment Distribution",
-        "data": [
-            {
-                "Category": "Initial Stock",
-                "Value": 35000,
-                "Fixed Costs": 25000,
-                "Percentage": 29.2,
-            },
-            {
-                "Category": "Rent",
-                "Value": 6000,
-                "Fixed Costs": 25000,
-                "Percentage": 5,
-            },
-            {
-                "Category": "Renovation and Furniture",
-                "Value": 10000,
-                "Fixed Costs": 25000,
-                "Percentage": 8.3,
-            },
-            {
-                "Category": "Equipment",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.2,
-            },
-            {
-                "Category": "Initial Marketing",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.2,
-            },
-            {
-                "Category": "Company Registration",
-                "Value": 6500,
-                "Fixed Costs": 25000,
-                "Percentage": 5.4,
-            },
-            {
-                "Category": "Working Capital",
-                "Value": 47500,
-                "Fixed Costs": 25000,
-                "Percentage": 39.6,
-            },
-            {
-                "Category": "Reserve for Expansion and Emergencies",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.1,
-            },
-        ],
-    }
+        business_type = data["executive_summary"]["initial_conditions_summary"][
+            "business_type"
+        ]
+        if business_type:
+            col1.metric("Business Type", business_type)
 
-    # Creating DataFrames
-    df_costs: pd.DataFrame = pd.DataFrame(
-        list(monthly_costs["data"].items()), columns=["Category", "Value"]
-    )
-    df_profit: pd.DataFrame = pd.DataFrame(net_profit["data"])
-    df_investment: pd.DataFrame = pd.DataFrame(investment["data"])
+        location = data["executive_summary"]["initial_conditions_summary"]["location"]
+        if location:
+            # Use a container with text instead of metric to avoid text cutting
+            with col2.container():
+                st.markdown("**Location**")
+                st.write(location)
 
-    # Calculating total investment
-    total_investment: float = df_investment["Value"].sum()
+        target = data["executive_summary"]["initial_conditions_summary"][
+            "target_audience_estimate"
+        ]
+        if target:
+            # Use a container with text instead of metric to avoid text cutting
+            with col3.container():
+                st.markdown("**Target Audience**")
+                st.write(target)
 
-    st.markdown(
-        f"""
-        <style>
-        body {{
-            background-color: {background_color};
-            color: {text_color};
-        }}
-        .stMetric {{
-            background-color: rgba(0,0,0,0); /* Transparent background */
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            color: {text_color}; /* Text color */
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # Key terms explanation
+    if any(data["executive_summary"]["explanation_of_key_terms"].values()):
+        with st.expander("Key Financial Terms"):
+            for term, definition in data["executive_summary"][
+                "explanation_of_key_terms"
+            ].items():
+                if definition:
+                    st.markdown(f"**{term}**: {definition}")
 
-    st.title("Business Plan Dashboard")
+    # Market and Competitive Analysis Section
+    st.header("Market and Competitive Analysis")
+    if data["market_and_competitive_analysis"]["overview"]:
+        st.write(data["market_and_competitive_analysis"]["overview"])
 
-    # Total Investment (Title and Value Side by Side)
+    # Key market trends
+    if data["market_and_competitive_analysis"]["key_market_trends"]:
+        st.subheader("Key Market Trends")
+        for trend in data["market_and_competitive_analysis"]["key_market_trends"]:
+            st.markdown(f"- {trend}")
+
+    # Competitors analysis
+    direct_competitors = data["market_and_competitive_analysis"][
+        "competitors_analysis"
+    ]["direct_competitors"]
+    indirect_competitors = data["market_and_competitive_analysis"][
+        "competitors_analysis"
+    ]["indirect_competitors"]
+
+    if any(direct_competitors) or any(indirect_competitors):
+        st.subheader("Competitive Landscape")
+
+        # Create tabs for direct and indirect competitors
+        tab1, tab2 = st.tabs(["Direct Competitors", "Indirect Competitors"])
+
+        with tab1:
+            if any(direct_competitors):
+                for comp in direct_competitors:
+                    if comp["name"]:
+                        with st.expander(comp["name"]):
+                            if comp["description"]:
+                                st.write(f"**Description**: {comp['description']}")
+                            if comp["strengths"]:
+                                st.write(f"**Strengths**: {comp['strengths']}")
+                            if comp["weaknesses"]:
+                                st.write(f"**Weaknesses**: {comp['weaknesses']}")
+                            if comp["user_business_differentiation"]:
+                                st.write(
+                                    f"**Differentiation**: {comp['user_business_differentiation']}"
+                                )
+
+        with tab2:
+            if any(indirect_competitors):
+                for comp in indirect_competitors:
+                    if comp["name"]:
+                        with st.expander(comp["name"]):
+                            if comp["description"]:
+                                st.write(f"**Description**: {comp['description']}")
+                            if comp["user_business_differentiation"]:
+                                st.write(
+                                    f"**Differentiation**: {comp['user_business_differentiation']}"
+                                )
+
+    # Investment Structure Section
+    st.header("Investment Structure and Operational Costs")
+    if data["investment_structure_and_operational_costs"]["overview"]:
+        st.write(data["investment_structure_and_operational_costs"]["overview"])
+
+    # Initial investment and monthly costs
     col1, col2 = st.columns(2)
 
     with col1:
-        st.header("Total Investment")
+        st.subheader("Initial Investment")
+
+        # Check if there's data to display
+        init_inv_data = data["investment_structure_and_operational_costs"][
+            "initial_investment"
+        ]["breakdown_by_items"]
+        if any(init_inv_data.values()):
+            # Create horizontal bar chart instead of pie chart
+            fig = px.bar(
+                y=list(init_inv_data.keys()),
+                x=list(init_inv_data.values()),
+                title="Initial Investment Breakdown",
+                orientation="h",
+                labels={"x": "Amount ($)", "y": "Category"},
+                color=list(init_inv_data.keys()),
+                color_discrete_sequence=px.colors.qualitative.Bold,
+                text_auto=True,
+            )
+            fig.update_layout(yaxis={"categoryorder": "total ascending"})
+            st.plotly_chart(fig, use_container_width=True)
+
+            # Display total
+            total = data["investment_structure_and_operational_costs"][
+                "initial_investment"
+            ]["total_estimated"]
+            if total:
+                st.metric("Total Initial Investment", f"${total:,}")
+
+            # Display consultant notes
+            notes = data["investment_structure_and_operational_costs"][
+                "initial_investment"
+            ]["consultant_notes"]
+            if notes:
+                st.info(f"**Consultant Notes**: {notes}")
 
     with col2:
-        st.header(f"R$ {total_investment:,.2f}")
+        st.subheader("Monthly Operational Costs")
 
-    # Monthly Costs
-    st.header(monthly_costs["title"])
-    st.bar_chart(df_costs.set_index("Category"), color=danger_color)  # Costs in red
+        # Check if there's data to display
+        monthly_costs = data["investment_structure_and_operational_costs"][
+            "monthly_operational_costs"
+        ]["breakdown_by_items"]
+        if any(monthly_costs.values()):
+            # Create bar chart for monthly costs
+            fig = px.bar(
+                y=list(monthly_costs.keys()),
+                x=list(monthly_costs.values()),
+                title="Monthly Operational Costs",
+                labels={"x": "Amount ($)", "y": "Category"},
+                color=list(monthly_costs.keys()),
+                color_discrete_sequence=px.colors.qualitative.Pastel,  # Use a different colorful palette
+                text_auto=True,  #
+            )
+            fig.update_layout(yaxis={"categoryorder": "total ascending"})
+            st.plotly_chart(fig, use_container_width=True)
 
-    st.write(
-        """
-    This business plan was developed to... [Add information about the business plan here].
-    """
-    )
+            # Display total
+            total = data["investment_structure_and_operational_costs"][
+                "monthly_operational_costs"
+            ]["total_estimated"]
+            if total:
+                st.metric("Total Monthly Costs", f"${total:,}")
 
-    # Estimated Net Profit
-    st.header(net_profit["title"])
-    fig_profit: go.Figure = go.Figure()
+            # Display consultant notes
+            notes = data["investment_structure_and_operational_costs"][
+                "monthly_operational_costs"
+            ]["consultant_notes"]
+            if notes:
+                st.info(f"**Consultant Notes**: {notes}")
 
-    # Line for Gross Revenue
-    fig_profit.add_trace(
-        go.Scatter(
-            x=df_profit["period"],
-            y=df_profit["Gross Revenue"],
-            mode="lines+markers",  # Adds markers
-            name="Gross Revenue",
-            marker=dict(color=primary_color),
-            hovertemplate="Period: %{x}<br>Revenue: R$ %{y}<extra></extra>",  # Adds hover info
+    # Financial Projections Section
+    st.header("Financial Projections, Break-Even, and ROI")
+    if data["financial_projections_break_even_and_ROI"]["overview"]:
+        st.write(data["financial_projections_break_even_and_ROI"]["overview"])
+
+    # 3-Year Financial Projection
+    yearly_data = data["financial_projections_break_even_and_ROI"][
+        "3_year_financial_projection"
+    ]["yearly_projections"]
+    if any(yearly_data):
+        st.subheader("3-Year Financial Projection")
+
+        # Create DataFrame for the chart
+        df = pd.DataFrame(yearly_data)
+
+        # Create line chart
+        fig = go.Figure()
+
+        # Add traces for revenue, expenses, and profit
+        if "revenue" in df.columns and df["revenue"].sum() > 0:
+            fig.add_trace(
+                go.Scatter(
+                    x=df["year"],
+                    y=df["revenue"],
+                    mode="lines+markers",
+                    name="Revenue",
+                    line=dict(color="green", width=3),
+                )
+            )
+
+        if "expenses" in df.columns and df["expenses"].sum() > 0:
+            fig.add_trace(
+                go.Scatter(
+                    x=df["year"],
+                    y=df["expenses"],
+                    mode="lines+markers",
+                    name="Expenses",
+                    line=dict(color="red", width=3),
+                )
+            )
+
+        if "profit" in df.columns and df["profit"].sum() != 0:
+            fig.add_trace(
+                go.Scatter(
+                    x=df["year"],
+                    y=df["profit"],
+                    mode="lines+markers",
+                    name="Profit",
+                    line=dict(color="blue", width=3),
+                )
+            )
+
+        fig.update_layout(
+            title="3-Year Financial Projection",
+            xaxis_title="Year",
+            yaxis_title="Amount ($)",
+            hovermode="x unified",
         )
-    )
 
-    # Line for Fixed Costs
-    fig_profit.add_trace(
-        go.Scatter(
-            x=df_profit["period"],
-            y=df_profit["Fixed Costs"],
-            mode="lines+markers",  # Adds markers
-            name="Fixed Costs",
-            marker=dict(color=danger_color),
-            hovertemplate="Period: %{x}<br>Costs: R$ %{y}<extra></extra>",  # Adds hover info
-        )
-    )
+        st.plotly_chart(fig, use_container_width=True)
 
-    # Line for Net Profit
-    fig_profit.add_trace(
-        go.Scatter(
-            x=df_profit["period"],
-            y=df_profit["Net Profit"],
-            mode="lines+markers",  # Adds markers
-            name="Net Profit",
-            marker=dict(color=success_color),
-            hovertemplate="Period: %{x}<br>Profit: R$ %{y}<extra></extra>",  # Adds hover info
-        )
-    )
+    # Break-even and ROI analysis
+    col1, col2 = st.columns(2)
 
-    fig_profit.update_layout(
-        xaxis_title="",
-        yaxis_title="Value (R$)",
-        yaxis=dict(rangemode="tozero"),  # Y-axis starts from zero
-        legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=-0.2,  # Places legend at the bottom
-            xanchor="center",
-            x=0.5,
-        ),
-    )
+    break_even_time = data["financial_projections_break_even_and_ROI"][
+        "break_even_analysis"
+    ]["estimated_break_even_time"]
+    if break_even_time:
+        # Use a container with text instead of metric to avoid text cutting
+        with col1.container():
+            st.markdown("**Estimated Break-Even Time**")
+            st.write(break_even_time)
 
-    st.plotly_chart(fig_profit)
-    st.dataframe(df_profit)
+    payback_period = data["financial_projections_break_even_and_ROI"][
+        "ROI_and_payback_analysis"
+    ]["estimated_payback_period"]
+    if payback_period:
+        # Use a container with text instead of metric to avoid text cutting
+        with col2.container():
+            st.markdown("**Estimated Payback Period**")
+            st.write(payback_period)
 
-    st.write(
-        """
-    This business plan was developed to... [Add information about the business plan"""
-    )
+    # Compliance and Regulation Section
+    st.header("Compliance, Regulation, and Expansion")
+    if data["compliance_regulation_and_expansion"]["overview"]:
+        st.write(data["compliance_regulation_and_expansion"]["overview"])
 
-    investment: Dict[str, List[Dict[str, float]]] = {
-        "title": "Investment Distribution",
-        "data": [
-            {
-                "Category": "Initial Stock",
-                "Value": 35000,
-                "Fixed Costs": 25000,
-                "Percentage": 29.2,
-            },
-            {
-                "Category": "Rent",
-                "Value": 6000,
-                "Fixed Costs": 25000,
-                "Percentage": 5,
-            },
-            {
-                "Category": "Renovation and Furniture",
-                "Value": 10000,
-                "Fixed Costs": 25000,
-                "Percentage": 8.3,
-            },
-            {
-                "Category": "Equipment",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.2,
-            },
-            {
-                "Category": "Initial Marketing",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.2,
-            },
-            {
-                "Category": "Company Registration",
-                "Value": 6500,
-                "Fixed Costs": 25000,
-                "Percentage": 5.4,
-            },
-            {
-                "Category": "Working Capital",
-                "Value": 47500,
-                "Fixed Costs": 25000,
-                "Percentage": 39.6,
-            },
-            {
-                "Category": "Reserve for Expansion and Emergencies",
-                "Value": 5000,
-                "Fixed Costs": 25000,
-                "Percentage": 4.1,
-            },
-        ],
-    }
+    # Required licenses and regulations
+    licenses = data["compliance_regulation_and_expansion"][
+        "required_licenses_and_regulations"
+    ]
+    if any(licenses):
+        st.subheader("Required Licenses and Regulations")
 
-    # Creating DataFrames
-    df_investment: pd.DataFrame = pd.DataFrame(investment["data"])
+        for license_item in licenses:
+            if license_item["license_or_regulation"]:
+                with st.expander(license_item["license_or_regulation"]):
+                    if license_item["description"]:
+                        st.write(f"**Description**: {license_item['description']}")
+                    if license_item["how_to_obtain_or_comply"]:
+                        st.write(
+                            f"**How to Obtain/Comply**: {license_item['how_to_obtain_or_comply']}"
+                        )
 
-    st.markdown(
-        f"""
-        <style>
-        body {{
-            background-color: {background_color};
-            color: {text_color};
-        }}
-        .stMetric {{
-            background-color: rgba(0,0,0,0); /* Transparent background */
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            color: {text_color}; /* Text color */
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # International expansion
+    expansion_data = data["compliance_regulation_and_expansion"][
+        "international_expansion_opportunities"
+    ]
+    if expansion_data["feasibility"] or expansion_data["recommended_strategies"]:
+        st.subheader("International Expansion Opportunities")
 
-    # Investment Distribution (Horizontal Bar Chart)
-    st.header(investment["title"])
+        col1, col2 = st.columns(2)
 
-    df_investment = df_investment.sort_values(by="Value", ascending=True)
+        if expansion_data["feasibility"]:
+            # Use a container with text instead of metric to avoid text cutting
+            with col1.container():
+                st.markdown("**Feasibility**")
+                st.write(expansion_data["feasibility"])
 
-    fig_investment = go.Figure(
-        go.Bar(
-            x=df_investment["Value"],
-            y=df_investment["Category"],
-            orientation="h",
-            text=[f"{p:.1f}%" for p in df_investment["Percentage"]],
-            textposition="inside",
-            marker_color=primary_color,
-        )
-    )
+        if expansion_data["recommended_strategies"]:
+            # Use a container instead of info to avoid text cutting
+            with col2.container():
+                st.markdown("**Recommended Strategies**")
+                st.write(expansion_data["recommended_strategies"])
 
-    fig_investment.update_layout(
-        xaxis_title="",
-        yaxis_title="",
-        xaxis_visible=False,
-        plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
-        paper_bgcolor="rgba(0,0,0,0)",  # Transparent paper background
-    )
+    # Conclusion and Next Steps Section
+    st.header("Conclusion and Next Steps")
+    if data["conclusion_and_next_steps"]["overview"]:
+        st.write(data["conclusion_and_next_steps"]["overview"])
 
-    st.plotly_chart(fig_investment)
-    st.dataframe(
-        df_investment[["Category", "Value", "Fixed Costs"]].sort_values(
-            by="Value", ascending=True
-        )
-    )
+    # Key insights
+    insights = data["conclusion_and_next_steps"]["key_insights"]
+    if insights:
+        st.subheader("Key Insights")
+        for insight in insights:
+            st.markdown(f"- {insight}")
 
-    st.write(
-        """
-    This business plan was developed to... [Add information about the business plan here].
-    """
-    )
+    # Recommended actions
+    actions = data["conclusion_and_next_steps"]["recommended_actions"]
+    if any(actions):
+        st.subheader("Recommended Actions")
+
+        # Create a DataFrame for the actions
+        actions_data = []
+        for action in actions:
+            if action["action_description"]:
+                actions_data.append(
+                    {
+                        "Step": action["step"],
+                        "Action": action["action_description"],
+                        "Priority": action["priority_level"],
+                        "Timeframe": action["recommended_timeframe"],
+                    }
+                )
+
+        if actions_data:
+            df = pd.DataFrame(actions_data)
+            # Display the dataframe without the index
+            st.dataframe(df, use_container_width=True, hide_index=True)
+
+            # References and Sources Section
+    st.header("References and Sources")
+    sources = data["references_and_sources_cited"]
+    if sources:
+        for i, source in enumerate(sources, 1):
+            if source["source_name"]:
+                with st.expander(f"{i}. {source['source_name']}"):
+                    if source["description"]:
+                        st.write(f"**Description**: {source['description']}")
+                    if source["link_or_reference"]:
+                        st.write(f"**Reference**: {source['link_or_reference']}")
+                    if source["methodology_if_estimate"]:
+                        st.write(
+                            f"**Methodology**: {source['methodology_if_estimate']}"
+                        )
+
+
+# Example usage:
+# import json
+# with open('data.json', 'r') as f:
+#     data = json.load(f)
+# create_dashboard(data)
