@@ -1,13 +1,15 @@
 import time
 
-from hackaton_roi.settings import EnvConfig
-from openai import OpenAI
+#from hackaton_roi.settings import EnvConfig
+from openai import OpenAI, api_key
 from utils.logger import log_action
-
 import re
-
 import json
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def generate_text(prompt: str) -> str:
     """
@@ -20,10 +22,10 @@ def generate_text(prompt: str) -> str:
         str: The generated text from the OpenAI API.
     """
     log_action("Text generation started", f"Prompt: {prompt}")
-
     client = OpenAI(
-        api_key=EnvConfig().openai_api_key
-    )  # Replace with your API key logic
+        api_key=os.getenv("OPENAI_API_KEY")
+        # api_key=EnvConfig().openai_api_key
+    )   # Replace with your API key logic
 
     retries = 3
     for attempt in range(retries):

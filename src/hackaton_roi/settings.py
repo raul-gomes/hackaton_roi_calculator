@@ -19,7 +19,8 @@ class EnvConfig:
         log_action("Environment configuration started")
 
         load_dotenv()
-        self.openai_api_key = st.secrets["OPENAI_API_KEY"]
+        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        #self.openai_api_key = st.secrets["OPENAI_API_KEY"]
         log_action("Environment configuration completed")
 
     def validate(self) -> None:
