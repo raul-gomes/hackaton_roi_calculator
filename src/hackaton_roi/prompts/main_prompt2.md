@@ -84,62 +84,62 @@ Report Structure to Generate (AI Response)
 Each section must contain at least 300-500 words with detailed analysis, recommendations, and financial insights.
 
 1. Executive Summary
-Comprehensive business overview explaining the market opportunity, business vision, and financial objectives.
-Explanation of key financial terms (ROI, investment, profit margin) in simple language.
-Summary of initial conditions (business type, location, investment level, audience).
-Strategic context for the investment, highlighting its importance and expected outcomes.
-Competitor landscape overview—briefly introduce major market players.
-Highlight the primary business differentiators and unique selling propositions.
+- Comprehensive business overview explaining the market opportunity, business vision, and financial objectives.
+- Explanation of key financial terms (ROI, investment, profit margin) in simple language.
+- Summary of initial conditions (business type, location, investment level, audience).
+- Strategic context for the investment, highlighting its importance and expected outcomes.
+- Competitor landscape overview—briefly introduce major market players.
+- Highlight the primary business differentiators and unique selling propositions.
 
 2. Market and Competitive Analysis
-In-depth industry overview, covering market trends, demand evolution, and sector growth projections.
-Competitive analysis with segmentation into direct and indirect competitors.
-SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) specific to the business type.
-Market challenges and risks, identifying barriers to entry and potential disruptors.
-Analysis of customer behavior and purchasing habits, with data-backed insights.
+- In-depth industry overview, covering market trends, demand evolution, and sector growth projections.
+- Competitive analysis with segmentation into direct and indirect competitors.
+- SWOT Analysis (Strengths, Weaknesses, Opportunities, Threats) specific to the business type.
+- Market challenges and risks, identifying barriers to entry and potential disruptors.
+- Analysis of customer behavior and purchasing habits, with data-backed insights.
 
 3. Investment Structure and Operational Costs
- Detailed investment plan, covering essential startup costs such as infrastructure, staffing, technology, and compliance.
- Breakdown of initial and recurring costs, including CAPEX (capital expenditures) and OPEX (operational expenses).
- Financial forecasting for cost control, assessing fixed vs. variable costs.
- Consultant insights on cost-optimization strategies and funding alternatives.
+ - Detailed investment plan, covering essential startup costs such as infrastructure, staffing, technology, and compliance.
+ - Breakdown of initial and recurring costs, including CAPEX (capital expenditures) and OPEX (operational expenses).
+ - Financial forecasting for cost control, assessing fixed vs. variable costs.
+ - Consultant insights on cost-optimization strategies and funding alternatives.
 
 4. Monetization Model and Pricing
- Comprehensive revenue model evaluation, considering subscription-based, transactional, advertising, or hybrid models.
- Suggested pricing strategies with benchmark comparisons from similar businesses.
- Financial viability analysis for the chosen monetization model.
- Scalability assessment, identifying opportunities for pricing adjustments as the business grows.
+ - Comprehensive revenue model evaluation, considering subscription-based, transactional, advertising, or hybrid models.
+ - Suggested pricing strategies with benchmark comparisons from similar businesses.
+ - Financial viability analysis for the chosen monetization model.
+ - Scalability assessment, identifying opportunities for pricing adjustments as the business grows.
 
 5. Financial Projections, Break-even, and ROI
- Three-year financial projection covering expected revenue, operational costs, and profit margins.
- Detailed break-even analysis with a clear calculation methodology.
- ROI analysis with conservative, realistic, and optimistic scenarios.
- Sensitivity analysis, adjusting assumptions based on different market conditions.
- Graphical data visualization (cash flow, profit trends, ROI curves, and break-even charts).
+ - Three-year financial projection covering expected revenue, operational costs, and profit margins.
+ - Detailed break-even analysis with a clear calculation methodology.
+ - ROI analysis with conservative, realistic, and optimistic scenarios.
+ - Sensitivity analysis, adjusting assumptions based on different market conditions.
+ - Graphical data visualization (cash flow, profit trends, ROI curves, and break-even charts).
 
 6. Compliance, Regulation, and Expansion
-Legal and regulatory requirements based on business location and sector.
-License acquisition process, cost estimates, and government regulations.
-Intellectual property and trademarks, ensuring brand protection.
-Risk management strategies for legal compliance.
-Expansion strategy for international or multi-region scaling.
+- Legal and regulatory requirements based on business location and sector.
+- License acquisition process, cost estimates, and government regulations.
+- Intellectual property and trademarks, ensuring brand protection.
+- Risk management strategies for legal compliance.
+- Expansion strategy for international or multi-region scaling.
 
 7. References and Sources Cited
-List of all data sources, including:
-Market benchmarks
-Government databases
-Industry-specific reports
-Explicit methodology for estimates, ensuring report credibility.
+- List of all data sources, including:
+- Market benchmarks
+- Government databases
+- Industry-specific reports
+- Explicit methodology for estimates, ensuring report credibility.
 
 8. Conclusion and Next Steps
-Clear summary of key insights from the report.
-Step-by-step implementation roadmap, breaking down short-term and long-term business actions.
-Prioritization framework for the most critical next steps.
-Final risk assessment & mitigation plan.
+- Clear summary of key insights from the report.
+- Step-by-step implementation roadmap, breaking down short-term and long-term business actions.
+- Prioritization framework for the most critical next steps.
+- Final risk assessment & mitigation plan.
 
 Final Refinements & AI Instructions
-Ensure that every section has at least 300-500 words filled with deep strategic insights, industry references, and practical applications.
-Include financial calculations where applicable, with logical justifications and graphical elements.
-Maintain a formal and professional consulting tone, delivering value similar to an executive-level business plan.
-Ensure full language adaptation, from headers to in-text content, for international usability.
+- Ensure that every section has at least 300-500 words filled with deep strategic insights, industry references, and practical applications.
+- Include financial calculations where applicable, with logical justifications and graphical elements.
+- Maintain a formal and professional consulting tone, delivering value similar to an executive-level business plan.
+- Ensure full language adaptation, from headers to in-text content, for international usability.
 
