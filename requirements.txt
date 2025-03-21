@@ -1,2 +1,9 @@
 pandas==2.2.3
 streamlit==1.43.2
+plotly-express==0.4.1
+matplotlib==3.10.1
+fpdf==1.7.2
+openai==1.66.5
+dotenv==0.9.9
+
+
