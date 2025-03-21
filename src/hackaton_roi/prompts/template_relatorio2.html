@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="{{report_metadata.generated_language}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI Report - {{executive_summary.initial_conditions_summary.business_type}}</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0 auto;
+            padding: 0;
+            max-width: 1100px;
+        }
+        header, footer {
+            background-color: #1f3b73;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+        }
+        h1, h2, h3 {
+            color: #1f3b73;
+        }
+        section {
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: auto;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .data-table th {
+            background-color: #1f3b73;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{executive_summary.overview}}</h1>
+    <p>{{report_metadata.generated_date}}</p>
+</header>
+
+<main>
+
+<section>
+    <h2>{{section_titles.executive_summary}}</h2>
+    <p><strong>Resumo:</strong> {{executive_summary.overview}}</p>
+</section>
+
+<section>
+    <h2>{{section_titles.market_and_competitive_analysis}}</h2>
+    <p>{{market_and_competitive_analysis.industry_overview}}</p>
+
+    <h3>📊 Market Trends</h3>
+    <div class="chart-container" id="market_trends_chart"></div>
+
+    <h3>📌 Concorrentes Diretos</h3>
+    <table class="data-table">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Forças</th>
+            <th>Fraquezas</th>
+            <th>Diferenciação</th>
+        </tr>
+        {% for competitor in market_and_competitive_analysis.competitors_analysis.direct_competitors %}
+        <tr>
+            <td>{{competitor.name}}</td>
+            <td>{{competitor.description}}</td>
+            <td>{{competitor.strengths}}</td>
+            <td>{{competitor.weaknesses}}</td>
+            <td>{{competitor.user_business_differentiation}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>{{section_titles.investment_structure_and_operational_costs}}</h2>
+    
+    <h3>💰 Investimento Inicial</h3>
+    <div class="chart-container" id="investment_chart"></div>
+
+    <h3>📌 Detalhamento de Custos</h3>
+    <table class="data-table">
+        <tr>
+            <th>Categoria</th>
+            <th>Valor (R$)</th>
+        </tr>
+        {% for category, value in investment_structure_and_operational_costs.initial_investment.breakdown_by_items.items() %}
+        <tr>
+            <td>{{category}}</td>
+            <td>{{value}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>{{section_titles.financial_projections_break_even_and_ROI}}</h2>
+    
+    <h3>📈 Projeção de Receita vs. Despesas</h3>
+    <div class="chart-container" id="revenue_projection_chart"></div>
+
+    <h3>📌 Break-even e Payback</h3>
+    <p><strong>{{section_titles.break_even}}:</strong> {{financial_projections_break_even_and_ROI.break_even_analysis.estimated_break_even_time}}</p>
+    <p><strong>{{section_titles.payback_period}}:</strong> {{financial_projections_break_even_and_ROI.ROI_and_payback_analysis.estimated_payback_period}}</p>
+</section>
+
+<section>
+    <h2>{{section_titles.conclusion_and_next_steps}}</h2>
+    <h3>🔍 Key Insights</h3>
+    <ul>
+        {% for insight in conclusion_and_next_steps.key_insights %}
+            <li>{{insight}}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+</main>
+
+<footer>
+    <p>© OpenBizROI AI – All rights reserved.</p>
+</footer>
+
+<script src="graphs.js"></script>
+
+</body>
+</html>
